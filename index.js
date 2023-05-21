@@ -57,6 +57,32 @@ async function run() {
         res.send(result)
       })
 
+          // geting single toy data
+    app.get('/singleToy/:id', async(req,res)=>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await toyCollection.findOne(query)
+      res.send(result)
+    })
+
+    // getting toy accoirding to their subcategory
+    app.get('/allToys/:subCategory', async(req,res)=>{
+      const { subCategory } = req.params;
+
+      
+      
+
+        if (subCategory === 'princes' || subCategory === 'donald-duck' || subCategory === 'frozen-dolls') {
+          const result = await toyCollection
+            .find({ sub_category: subCategory })
+            .toArray();
+          res.send(result);
+        } else {
+          const result = await toyCollection.find().toArray();
+          res.send(result);
+        }
+    })
+
    
 
     // Send a ping to confirm a successful connection
