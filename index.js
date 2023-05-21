@@ -83,6 +83,16 @@ async function run() {
         }
     })
 
+      // getting toys list added by the user email
+
+      app.get('/myToys/:email', async(req,res)=>{
+        console.log(req.params.email)
+        const result = await toyCollection
+        .find({email : req.params.email})
+        .toArray()
+        res.send(result)
+      } )
+
    
 
     // Send a ping to confirm a successful connection
