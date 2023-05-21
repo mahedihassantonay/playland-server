@@ -87,8 +87,16 @@ async function run() {
 
       app.get('/myToys/:email', async(req,res)=>{
         console.log(req.params.email)
+        const sort = req.query.sort;
+        let sortOptions = {};
+        if (sort === 'ascending') {
+          sortOptions = { price: 1 };
+        } else if (sort === 'descending') {
+          sortOptions = { price: -1 };
+        }
         const result = await toyCollection
         .find({email : req.params.email})
+        .sort(sortOptions)
         .toArray()
         res.send(result)
       } )
