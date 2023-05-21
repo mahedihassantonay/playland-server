@@ -29,10 +29,10 @@ async function run() {
 
     const toyCollection = client.db('toysWorld').collection('toys');
 
-    // indexing for searching toy based on toy name
-    const indexKeys = {toy_name : 1}
-    const indexOptions = {name : 'toyName'}
-    const result = await toyCollection.createIndex(indexKeys,indexOptions)
+    // // indexing for searching toy based on toy name
+    // const indexKeys = {toy_name : 1}
+    // const indexOptions = {name : 'toyName'}
+    // const result = await toyCollection.createIndex(indexKeys,indexOptions)
 
     app.get('/toySearchByName/:text', async(req,res)=>{
       const searchText = req.params.text;
@@ -57,13 +57,7 @@ async function run() {
         res.send(result)
       })
 
-      // // limit 
-      // app.get('/totalToys', async(req,res)=>{
       
-      //   const result = await toyCollection.estimatedDocumentCount();
-        
-      //   res.send({totalToys: result})
-      // })
 
 
           // geting single toy data
