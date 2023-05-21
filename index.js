@@ -53,9 +53,18 @@ async function run() {
       // getting all toys from db
       app.get('/allToys', async(req,res)=>{
       
-        const result = await toyCollection.find().toArray();
+        const result = await toyCollection.find().limit(20).toArray();
         res.send(result)
       })
+
+      // // limit 
+      // app.get('/totalToys', async(req,res)=>{
+      
+      //   const result = await toyCollection.estimatedDocumentCount();
+        
+      //   res.send({totalToys: result})
+      // })
+
 
           // geting single toy data
     app.get('/singleToy/:id', async(req,res)=>{
